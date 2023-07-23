@@ -1,0 +1,11 @@
+DATABASE_URL='mysql://7tqvjb4ddcsji07bzk2a:pscale_pw_kxMTBZhXf4iHrdT6Ky3YngvIn0d97Cw4mo4hLQN3a8h@aws.connect.psdb.cloud/breadit?sslaccept=strict'
+NEXTAUTH_SECRET=nguyentunglshb
+
+GOOGLE_CLIENT_ID=742589924416-hlvpniiuo2n64nker7ch4gtu0vei9db8.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+
+UPLOADTHING_SECRET=
+UPLOADTHING_APP_ID=
+
+REDIS_URL=
+REDIS_SECRET=
