@@ -4,14 +4,18 @@ import React, { FC, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/Button";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { CreateSubredditPayload } from "@/lib/validators/subreddit";
 import { Input } from "@/components/ui/Input";
+import { toast } from "@/hooks/use-toast";
+import { useCustomToast } from "@/hooks/use-custom-toast";
 
 interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
   const [input, setInput] = useState("");
+
+  const { loginToast } = useCustomToast();
 
   const router = useRouter();
 
@@ -23,6 +27,29 @@ const Page: FC<pageProps> = ({}) => {
       const { data } = await axios.post("/api/subreddit", payload);
 
       return data as string;
+    },
+    onError: (err) => {
+      if (err instanceof AxiosError) {
+        if (err.response?.status === 409) {
+          return toast({
+            title: "Subreddit already exist",
+            description: "Please choose a different subreddit name",
+            variant: "destructive",
+          });
+        }
+
+        if (err.response?.status === 422) {
+          return toast({
+            title: "Invalid subreddit name",
+            description: "Please choose a name between 3 and 21 characters",
+            variant: "destructive",
+          });
+        }
+
+        if (err.response?.status === 401) {
+          return loginToast();
+        }
+      }
     },
   });
 
