@@ -51,6 +51,9 @@ const Page: FC<pageProps> = ({}) => {
         }
       }
     },
+    onSuccess: (data) => {
+      router.push(`/r/${data}`);
+    },
   });
 
   return (
@@ -84,7 +87,7 @@ const Page: FC<pageProps> = ({}) => {
           </Button>
           <Button
             isLoading={isLoading}
-            disabled={input.length === 0}
+            disabled={input.length === 0 || isLoading}
             onClick={() => createCommunity()}
           >
             Create community
