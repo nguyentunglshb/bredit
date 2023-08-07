@@ -29,6 +29,9 @@ const page: FC<PageProps> = async ({ params }) => {
           comments: true,
           subreddit: true,
         },
+        orderBy: {
+          createdAt: "desc",
+        },
         take: INFINITE_SCROLLING_PAGINATION_RESULTS,
       },
     },
@@ -42,7 +45,7 @@ const page: FC<PageProps> = async ({ params }) => {
         r/{subreddit.name}
       </h1>
       <MiniCreatePost session={session} />
-      <PostFeed initialPost={subreddit.posts} subredditName={subreddit.name} />
+      <PostFeed initialPosts={subreddit.posts} subredditName={subreddit.name} />
     </>
   );
 };
