@@ -53,11 +53,11 @@ const Post: FC<PostProps> = ({
             {formatTimeToNow(new Date(createdAt))}
           </div>
 
-          <a href={`/r/${subredditName}/post/${id}`}>
+          <Link href={`/r/${subredditName}/post/${id}`}>
             <h1 className="text-lg font-semibold py-2 leading-6 text-gray-900">
               {title}
             </h1>
-          </a>
+          </Link>
 
           <div
             className="relative text-sm max-h-40 w-full overflow-clip"
@@ -72,12 +72,12 @@ const Post: FC<PostProps> = ({
       </div>
 
       <div className="bg-gray-50 z-20 text-sm px-4 py-4 sm:px-6">
-        <a
+        <Link
           href={`/r/${subredditName}/post/${id}`}
           className="w-fit flex items-center gap-2"
         >
           <MessageSquare className="w-4 h-4" /> {commentAmt} comments
-        </a>
+        </Link>
       </div>
     </div>
   );
